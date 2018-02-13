@@ -1,0 +1,4 @@
+
+<ul class="nav nav-pills nav-stacked">
+    <li (click)="onSelect(video)" *ngFor="let video of videos"><a *ngIf="video.level == '0'">{{video.level}} :<span *ngIf="video.parent1 != 'null'"> {{video.parent1}} -></span> <span *ngIf="video.parent2 != 'null'">{{video.parent2}} -></span> {{video.title}}</a></li>
+</ul>

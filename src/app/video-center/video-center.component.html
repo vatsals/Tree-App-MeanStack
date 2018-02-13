@@ -1,0 +1,106 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div *ngIf="!hidenewVideo">
+			<h2>New Node</h2>
+			<div class="form-group">
+				<label>Level</label>
+				<div style="display: flex;">
+					<input type="text" class="form-control" style="flex: 1;" name="level" ngModel #level>
+					<button style="margin-left: 5px;" class="btn btn-success" (click)="renderForm(level.value)">Select</button>
+				</div>
+			</div>
+			<form *ngIf="fvis1" #form="ngForm" (ngSubmit)="onSubmitAddVideo(form.value)" class="well">
+				<div class="form-group" style="display: none;">
+					<label>1st Parent</label>
+					<input type="text" class="form-control" [ngModel]="defVal" required name="parent1" ngModel>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>2nd Parent</label>
+					<input type="text" class="form-control" [ngModel]="defVal" name="parent2" ngModel>
+				</div>
+				<div class="form-group">
+					<label>Title</label>
+					<input type="text" class="form-control" required name="title" ngModel>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>Level</label>
+					<input type="text" class="form-control" [ngModel]="defl1" name="level" ngModel>
+				</div>
+				<button type="submit" class="btn btn-success">Save</button>
+			</form>
+			<form *ngIf="fvis2" #form="ngForm" (ngSubmit)="onSubmitAddVideo(form.value)" class="well">
+				<div class="form-group">
+					<label>Root</label>
+					<select (change)="handle(selectField.value);" #selectField>
+						<option *ngFor="let video of videos"><span *ngIf="video.level == '0'">{{video.title}}</span></option>
+					</select>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>Root</label>
+					<input type="text" class="form-control" [ngModel]="def2Valp1" required name="parent1" ngModel>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>2nd Parent</label>
+					<input type="text" class="form-control" [ngModel]="defVal" name="parent2" ngModel>
+				</div>
+				<div class="form-group">
+					<label>Title</label>
+					<input type="text" class="form-control" required name="title" ngModel>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>Level</label>
+					<input type="text" class="form-control" [ngModel]="defl2" name="level" ngModel>
+				</div>
+				<button type="submit" class="btn btn-success">Save</button>
+			</form>
+			<form *ngIf="fvis3" #form="ngForm" (ngSubmit)="onSubmitAddVideo(form.value)" class="well">
+				<div class="form-group">
+					<label>1st Parent</label>
+					<select (change)="handle2(selectField2.value);" #selectField2>
+						<option *ngFor="let video of videos"><span *ngIf="video.level == '0'">{{video.title}}</span></option>
+					</select>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>1st Parent</label>
+					<input type="text" class="form-control" [ngModel]="def3Valp1" required name="parent1" ngModel>
+				</div>
+				<div class="form-group">
+					<label>2nd Parent</label>
+					<select (change)="handle3(selectField3.value);" #selectField3>
+						<option *ngFor="let video of videos"><span *ngIf="video.level == '1'">{{video.title}}</span></option>
+					</select>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>2nd Parent</label>
+					<input type="text" class="form-control" [ngModel]="def3Valp2" required name="parent2" ngModel>
+				</div>
+				<div class="form-group">
+					<label>Title</label>
+					<input type="text" class="form-control" required name="title" ngModel>
+				</div>
+				<div class="form-group" style="display: none;">
+					<label>Level</label>
+					<input type="text" class="form-control" [ngModel]="defl3" name="level" ngModel>
+				</div>
+				<button type="submit" class="btn btn-success">Save</button>
+			</form>
+		</div>
+		<video-detail *ngIf="selectedVideo && hidenewVideo" 
+		(updateVideoEvent)="onUpdateVideoEvent($event)" 
+		(deleteVideoEvent)="onDeleteVideoEvent($event)"
+		 [video]="selectedVideo">
+		</video-detail>
+	</div>
+	<div class="col-sm-3">
+		<button style="margin-bottom:2px;" type="button" (click)="newVideo()" class="btn btn-success btn-block">+ New Node</button>
+		<video-list [videos]="videos" (SelectVideo)="onSelectVideo($event)"></video-list>
+	</div>
+	<div class="col-sm-3">
+		<button style="margin-bottom:2px;" type="button" (click)="newVideo()" class="btn btn-success btn-block">+ New Node</button>
+		<video-list2 [videos]="videos" (SelectVideo)="onSelectVideo($event)"></video-list2>
+	</div>
+	<div class="col-sm-3">
+		<button style="margin-bottom:2px;" type="button" (click)="newVideo()" class="btn btn-success btn-block">+ New Node</button>
+		<video-list3 [videos]="videos" (SelectVideo)="onSelectVideo($event)"></video-list3>
+	</div>
+</div>

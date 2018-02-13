@@ -1,0 +1,23 @@
+<div>
+    <form>  
+        <h3 *ngIf="!editTitle" (click)="onTitleClick()">{{video.title}}</h3>     
+        <div *ngIf="editTitle" class="form-group">
+            <input type="input" class="form-control" name="title" required placeholder="title"
+            [(ngModel)]="video.title">
+        </div>
+        <div class="form-group">
+            <input type="input" class="form-control" name="parent1" required placeholder="1st Parent Node"
+            [(ngModel)]="video.parent1">
+        </div>
+        <div class="form-group">
+            <input type="input" class="form-control" name="parent2" required placeholder="2nd Parent Node"
+            [(ngModel)]="video.parent2">
+        </div>
+        <div class="form-group">
+            <input type="input" class="form-control" name="level" required placeholder="Level"
+            [(ngModel)]="video.level">
+        </div>
+        <button type="button" (click)="updateVideo()" class="btn btn-primary">Update</button>  
+        <button type="button" (click)="deleteVideo()" class="btn btn-danger">Delete</button>    
+    </form>
+</div>
